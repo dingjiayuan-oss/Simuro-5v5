@@ -168,14 +168,29 @@ def strategy_penalty(field):
             baseRobots[3].throw_ball(football_now_x, football_now_y)
         else:
             strategy_common(field)
-    if race_state_trigger == Team.Opponent:
-        if GlobalVariable.tick - tickBeginPenalty <= 60 and football_now_x <= -70 and football_now_y <= 40:
-            for i in range(0, 5):
-                baseRobots[i].set_wheel_velocity(0, 0)
-            baseRobots[0].moveto(futureBallx, futureBally)
-        else:
-            strategy_common(field)
+    # if race_state_trigger == Team.Opponent:
+    #     if GlobalVariable.tick - tickBeginPenalty <= 60 and football_now_x <= -70 and football_now_y <= 40:
+    #         for i in range(0, 5):
+    #             baseRobots[i].set_wheel_velocity(0, 0)
+    #         baseRobots[0].moveto(futureBallx, futureBally)
+    #     else:
+    #         strategy_common(field)
+    if GlobalVariable.tick - tickBeginPenalty <= 60 and football_now_x <= -70 and football_now_y <= 40:
+        for i in range(0, 5):
+            baseRobots[i].set_wheel_velocity(0, 0)
 
+        # 球速度
+        vx = football_now_x - BallPos[GlobalVariable.tick - 1].x
+        vy = football_now_y - BallPos[GlobalVariable.tick - 1].y
+
+        # 球预测位置
+        predicted_ball_x = football_now_x + vx * 2
+        predicted_ball_y = football_now_y + vy * 2
+
+        # 守门员移动到预测点
+        baseRobots[0].moveto(predicted_ball_x, predicted_ball_y)
+    else:
+        strategy_common(field)
 
 def strategy_goalkick(field):
     global tickBeginGoalKick
