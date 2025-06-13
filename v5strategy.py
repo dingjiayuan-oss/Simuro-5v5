@@ -158,14 +158,14 @@ def strategy_penalty(field):
         for i in range(0, 5):
             baseRobots[i].set_wheel_velocity(0, 0)
         if GlobalVariable.tick - tickBeginPenalty <= 12:
-            baseRobots[1].set_wheel_velocity(125, 90)
+            baseRobots[1].set_wheel_velocity(45, 45)
             baseRobots[3].set_wheel_velocity(125, 125)
         elif GlobalVariable.tick - tickBeginPenalty <= 35:
             baseRobots[1].set_wheel_velocity(0, 0)
             baseRobots[3].set_wheel_velocity(125, 125)
         elif GlobalVariable.tick - tickBeginPenalty <= 60:
             baseRobots[1].set_wheel_velocity(0, 0)
-            baseRobots[3].throw_ball(football_now_x, football_now_y)
+            baseRobots[3].shoot(football_now_x, football_now_y)
         else:
             strategy_common(field)
     # if race_state_trigger == Team.Opponent:
