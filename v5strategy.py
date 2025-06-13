@@ -158,7 +158,7 @@ def strategy_penalty(field):
         for i in range(0, 5):
             baseRobots[i].set_wheel_velocity(0, 0)
         if GlobalVariable.tick - tickBeginPenalty <= 12:
-            baseRobots[1].set_wheel_velocity(125, 45)
+            baseRobots[1].set_wheel_velocity(125, 90)
             baseRobots[3].set_wheel_velocity(125, 125)
         elif GlobalVariable.tick - tickBeginPenalty <= 35:
             baseRobots[1].set_wheel_velocity(0, 0)
